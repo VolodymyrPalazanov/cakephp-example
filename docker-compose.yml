@@ -1,0 +1,22 @@
+services:
+  cakephp-app:
+    container_name: cakephp-app
+    build: .
+    volumes:
+      - ./cakephp-app:/var/www/html
+    ports:
+      - 3000:80
+  mysql_db:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: math_database
+    ports:
+      - 3306:3306
+  phpmyadmin:
+    image: phpmyadmin:latest
+    restart: always
+    ports:
+      - 3001:80
+    environment:
+      - PMA_ARBITRARY=1
