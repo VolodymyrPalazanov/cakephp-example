@@ -3,7 +3,7 @@ services:
     container_name: cakephp-app
     build: .
     volumes:
-      - ./cakephp-app:/var/www/html
+      - ./:/var/www/html
     ports:
       - 3000:80
   mysql_db:

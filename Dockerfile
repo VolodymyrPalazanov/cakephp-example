@@ -4,7 +4,7 @@ RUN a2enmod rewrite
 
 RUN apt-get update -y && apt-get install -y \ 
                         libicu-dev \
-                        unzip zip \
+                        unzip \
                         libmariadb-dev \
                         libpng-dev \
                         libjpeg-dev \
