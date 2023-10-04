@@ -3,21 +3,22 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller\Component;
 
+use App\Controller\MathController; // Poprawa: Import kontrolera, który ma być testowany
 use App\Controller\Component\MatComponent;
 use Cake\Controller\ComponentRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\Component\MathComponent Test Case
+ * App\Controller\Component\MatComponent Test Case
  */
 class MatComponentTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Controller\Component\MatComponent
+     * @var \App\Controller\MathController
      */
-    public $Mat;
+    public $MathController; // Poprawa: Zmiana nazwy zmiennej na MathController
 
     /**
      * setUp method
@@ -27,20 +28,22 @@ class MatComponentTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $controller = new Controller();
+
+        // Tworzenie instancji kontrolera
         $registry = new ComponentRegistry();
-        $this->Mat = new MatComponent($registry);
+        $this->MathController = new MathController($registry); // Poprawa: Przekazanie ComponentRegistry do kontrolera
     }
+
     public function testAddNumbers()
     {
-        // Create an instance of the controller
-        $this->Mat = new MathController();
-
         // Call the controller action
-        $result = $this->Mat->addNumbers();
+        $result = $this->MathController->addNumbers();
+
+        // Get the view vars from the controller
+        $viewVars = $this->MathController->viewVars;
 
         // Assert that the result is as expected
-        $this->assertEquals(8, $this->Mat->viewVars['result']);
+        $this->assertEquals(13, $viewVars['sum']); // Poprawa: Sprawdzenie wyniku na podstawie zmiennych widoku
     }
 
     /**
@@ -50,7 +53,7 @@ class MatComponentTest extends TestCase
      */
     protected function tearDown(): void
     {
-        unset($this->Mat);
+        unset($this->MathController);
 
         parent::tearDown();
     }

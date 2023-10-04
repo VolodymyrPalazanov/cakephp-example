@@ -3,18 +3,32 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use App\Controller\Component\MatComponent;
+use Cake\Controller\Controller;
+use Cake\Event\EventInterface;
+
 /**
  * Math Controller
  *
  * @property \App\Model\Table\MathTable $Math
+ * 
  */
 class MathController extends AppController
 {
+    /**
+    * @property \App\Controller\Component\MatComponent $Mat
+    * @var \App\Controller\Component\MatComponent
+    */
+    private $Mat;
     public function initialize(): void
     {
         parent::initialize();
         $this->loadComponent('Mat');
+        $this->Mat = $this->loadComponent('Mat');
     }
+    /**
+    * @return mixed
+    */
     public function addNumbers()
     {
         $number1 = 10;
@@ -47,15 +61,16 @@ class MathController extends AppController
      */
     public function view($id = null)
     {
+        $this->loadModel('Math'); // Load the Math model
         $math = $this->Math->get($id, ['contain' => []]);
         $this->set(compact('math'));
     }
 
     /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
-     */
+    * Add method
+    *
+    * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+    */
     public function add()
     {
         $math = $this->Math->newEmptyEntity();
@@ -64,8 +79,8 @@ class MathController extends AppController
             if ($this->Math->save($math)) {
                 $this->Flash->success(__('The math has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
-            }
+             return $this->redirect(['action' => 'index']);
+         }
             $this->Flash->error(__('The math could not be saved. Please, try again.'));
         }
         $this->set(compact('math'));

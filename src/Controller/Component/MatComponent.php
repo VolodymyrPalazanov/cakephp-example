@@ -8,10 +8,14 @@ use Cake\Controller\ComponentRegistry;
 
 /**
  * Mat component
+ *
  */
 class MatComponent extends Component
 {
-    public function add($a, $b) {
+    /**
+     *  @return int
+     */
+    public function add(int $a, int $b) {
         $add = $a + $b;
         return $add;
     }
