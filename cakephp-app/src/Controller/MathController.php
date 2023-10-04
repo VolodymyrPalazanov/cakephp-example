@@ -17,9 +17,13 @@ class MathController extends AppController
     }
     public function addNumbers()
     {
-        $result = $this->Mat->add(8, 3);
+        $number1 = 8;
+        $number2 = 3;
+        $sum = $this->Mat->add($number1, $number2);
 
-        $this->set(compact('result'));
+        $this->set('number1', $number1);
+        $this->set('number2', $number2);
+        $this->set('sum', $sum);
     }
     /**
      * Index method

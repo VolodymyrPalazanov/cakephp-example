@@ -8,7 +8,7 @@ use Cake\Controller\ComponentRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\Component\MathComponent Test Case
+ * App\Controller\Component\MatComponent Test Case
  */
 class MatComponentTest extends TestCase
 {
@@ -27,20 +27,17 @@ class MatComponentTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $controller = new Controller();
         $registry = new ComponentRegistry();
         $this->Mat = new MatComponent($registry);
     }
+
     public function testAddNumbers()
     {
-        // Create an instance of the controller
-        $this->Mat = new MatController();
-
-        // Call the controller action
-        $result = $this->Mat->addNumbers();
+        // Call the method from the component
+        $result = $this->Mat->addNumbers(3, 5);
 
         // Assert that the result is as expected
-        $this->assertEquals(8, $this->Mat->viewVars['result']);
+        $this->assertEquals(8, $result);
     }
 
     /**

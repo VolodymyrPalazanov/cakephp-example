@@ -13,6 +13,6 @@ class MatComponent extends Component
 {
     public function add($a, $b) {
         $add = $a + $b;
-        echo $add;
+        return $add;
     }
 }
