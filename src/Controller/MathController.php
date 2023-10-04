@@ -17,7 +17,7 @@ class MathController extends AppController
     }
     public function addNumbers()
     {
-        $number1 = 8;
+        $number1 = 10;
         $number2 = 3;
         $sum = $this->Mat->add($number1, $number2);
 
@@ -47,7 +47,7 @@ class MathController extends AppController
      */
     public function view($id = null)
     {
-        $math = $this->Math->get($id, contain: []);
+        $math = $this->Math->get($id, ['contain' => []]);
         $this->set(compact('math'));
     }
 
@@ -80,7 +80,7 @@ class MathController extends AppController
      */
     public function edit($id = null)
     {
-        $math = $this->Math->get($id, contain: []);
+        $math = $this->Math->get($id, ['contain' => []]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $math = $this->Math->patchEntity($math, $this->request->getData());
             if ($this->Math->save($math)) {
