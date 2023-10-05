@@ -24,8 +24,8 @@ class MatComponent extends Component
     /**
      * @return int
      */
-    public function add(int $a, int $b)
+    public function add(int $number1, int $number2)
     {
-        return $a + $b;
+        return $number1 + $number2;
     }
 }
