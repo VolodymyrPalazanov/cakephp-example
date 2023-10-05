@@ -2,37 +2,22 @@
 
 declare(strict_types=1);
 
-/*
- * This file is part of PHP CS Fixer.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
- *
- * This source file is subject to the MIT license that is bundled
- * with this source code in the file LICENSE.
- */
-
 namespace App\Test\TestCase\Controller\Component;
 
-use App\Controller\MathController; // Poprawa: Import kontrolera, który ma być testowany
-use Cake\Controller\ComponentRegistry;
+use App\Controller\MathController;
 use Cake\TestSuite\TestCase;
 
 /**
  * App\Controller\Component\MatComponent Test Case.
- *
- * @internal
- *
- * @coversNothing
  */
-final class MatComponentTest extends TestCase
+class MatComponentTest extends TestCase
 {
     /**
      * Test subject.
      *
      * @var \App\Controller\MathController
      */
-    public $MathController; // Poprawa: Zmiana nazwy zmiennej na MathController
+    public $MathController;
 
     /**
      * setUp method.
@@ -41,9 +26,8 @@ final class MatComponentTest extends TestCase
     {
         parent::setUp();
 
-        // Tworzenie instancji kontrolera
-        $registry = new ComponentRegistry();
-        $this->MathController = new MathController($registry); // Poprawa: Przekazanie ComponentRegistry do kontrolera
+        // Create an instance of the real MathController
+        $this->MathController = new MathController();
     }
 
     /**
@@ -51,7 +35,7 @@ final class MatComponentTest extends TestCase
      */
     protected function tearDown(): void
     {
-        $this->MathController = null;
+        unset($this->MathController);
 
         parent::tearDown();
     }
@@ -65,6 +49,6 @@ final class MatComponentTest extends TestCase
         $viewVars = $this->MathController->viewVars;
 
         // Assert that the result is as expected
-        self::assertSame(13, $viewVars['sum']); // Poprawa: Sprawdzenie wyniku na podstawie zmiennych widoku
+        self::assertSame(13, $viewVars['sum']);
     }
 }
