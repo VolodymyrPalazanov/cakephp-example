@@ -1,24 +1,19 @@
 <?php
+
 declare(strict_types=1);
 
-/**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+/*
+ * This file is part of PHP CS Fixer.
  *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
  *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         0.10.8
- * @license       https://opensource.org/licenses/mit-license.php MIT License
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
-/*
- * Configure paths required to find CakePHP + general filepath constants
- */
-require __DIR__ . DIRECTORY_SEPARATOR . 'paths.php';
+// Configure paths required to find CakePHP + general filepath constants
+require __DIR__.DIRECTORY_SEPARATOR.'paths.php';
 
 /*
  * Bootstrap CakePHP.
@@ -29,13 +24,11 @@ require __DIR__ . DIRECTORY_SEPARATOR . 'paths.php';
  * - Registering the CakePHP autoloader.
  * - Setting the default application paths.
  */
-require CORE_PATH . 'config' . DS . 'bootstrap.php';
+require CORE_PATH.'config'.DS.'bootstrap.php';
 
 use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Core\Configure\Engine\PhpConfig;
-use Cake\Database\Type\StringType;
-use Cake\Database\TypeFactory;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\ErrorTrap;
 use Cake\Error\ExceptionTrap;
@@ -49,7 +42,7 @@ use Cake\Utility\Security;
 /**
  * Load global functions.
  */
-require CAKE . 'functions.php';
+require CAKE.'functions.php';
 
 /*
  * See https://github.com/josegonzalez/php-dotenv for API details.
@@ -85,14 +78,14 @@ try {
     Configure::config('default', new PhpConfig());
     Configure::load('app', 'default', false);
 } catch (\Exception $e) {
-    exit($e->getMessage() . "\n");
+    exit($e->getMessage()."\n");
 }
 
 /*
  * Load an environment local configuration file to provide overrides to your configuration.
  * Notice: For security reasons app_local.php **should not** be included in your git repo.
  */
-if (file_exists(CONFIG . 'app_local.php')) {
+if (file_exists(CONFIG.'app_local.php')) {
     Configure::load('app_local', 'default');
 }
 
@@ -113,9 +106,7 @@ if (Configure::read('debug')) {
  */
 date_default_timezone_set(Configure::read('App.defaultTimezone'));
 
-/*
- * Configure the mbstring extension to use the correct encoding.
- */
+// Configure the mbstring extension to use the correct encoding.
 mb_internal_encoding(Configure::read('App.encoding'));
 
 /*
@@ -124,17 +115,13 @@ mb_internal_encoding(Configure::read('App.encoding'));
  */
 ini_set('intl.default_locale', Configure::read('App.defaultLocale'));
 
-/*
- * Register application error and exception handlers.
- */
+// Register application error and exception handlers.
 (new ErrorTrap(Configure::read('Error')))->register();
 (new ExceptionTrap(Configure::read('Error')))->register();
 
-/*
- * Include the CLI bootstrap overrides.
- */
+// Include the CLI bootstrap overrides.
 if (PHP_SAPI === 'cli') {
-    require CONFIG . 'bootstrap_cli.php';
+    require CONFIG.'bootstrap_cli.php';
 }
 
 /*
@@ -154,13 +141,13 @@ if (!$fullBaseUrl) {
     $trustProxy = false;
 
     $s = null;
-    if (env('HTTPS') || ($trustProxy && env('HTTP_X_FORWARDED_PROTO') === 'https')) {
+    if (env('HTTPS') || ($trustProxy && 'https' === env('HTTP_X_FORWARDED_PROTO'))) {
         $s = 's';
     }
 
     $httpHost = env('HTTP_HOST');
     if (isset($httpHost)) {
-        $fullBaseUrl = 'http' . $s . '://' . $httpHost;
+        $fullBaseUrl = 'http'.$s.'://'.$httpHost;
     }
     unset($httpHost, $s);
 }
@@ -181,12 +168,12 @@ Security::setSalt(Configure::consume('Security.salt'));
  * If you don't use these checks you can safely remove this code
  * and the mobiledetect package from composer.json.
  */
-ServerRequest::addDetector('mobile', function ($request) {
+ServerRequest::addDetector('mobile', static function ($request) {
     $detector = new \Detection\MobileDetect();
 
     return $detector->isMobile();
 });
-ServerRequest::addDetector('tablet', function ($request) {
+ServerRequest::addDetector('tablet', static function ($request) {
     $detector = new \Detection\MobileDetect();
 
     return $detector->isTablet();
@@ -220,12 +207,12 @@ ServerRequest::addDetector('tablet', function ($request) {
  * table, model, controller names or whatever other string is passed to the
  * inflection functions.
  */
-//Inflector::rules('plural', ['/^(inflect)or$/i' => '\1ables']);
-//Inflector::rules('irregular', ['red' => 'redlings']);
-//Inflector::rules('uninflected', ['dontinflectme']);
+// Inflector::rules('plural', ['/^(inflect)or$/i' => '\1ables']);
+// Inflector::rules('irregular', ['red' => 'redlings']);
+// Inflector::rules('uninflected', ['dontinflectme']);
 
 // set a custom date and time format
 // see https://book.cakephp.org/4/en/core-libraries/time.html#setting-the-default-locale-and-format-string
 // and https://unicode-org.github.io/icu/userguide/format_parse/datetime/#datetime-format-syntax
-//\Cake\I18n\FrozenDate::setToStringFormat('dd.MM.yyyy');
-//\Cake\I18n\FrozenTime::setToStringFormat('dd.MM.yyyy HH:mm');
+// \Cake\I18n\FrozenDate::setToStringFormat('dd.MM.yyyy');
+// \Cake\I18n\FrozenTime::setToStringFormat('dd.MM.yyyy HH:mm');

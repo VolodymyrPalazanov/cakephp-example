@@ -1,28 +1,27 @@
 <?php
+
 declare(strict_types=1);
 
-/**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+/*
+ * This file is part of PHP CS Fixer.
  *
- * Licensed under The MIT License
- * Redistributions of files must retain the above copyright notice.
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
  *
- * @copyright Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link      https://cakephp.org CakePHP(tm) Project
- * @since     3.0.0
- * @license   https://opensource.org/licenses/mit-license.php MIT License
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
+
 namespace App\View;
 
 use Cake\View\View;
 
 /**
- * Application View
+ * Application View.
  *
  * Your application's default view class
  *
- * @link https://book.cakephp.org/4/en/views.html#the-app-view
+ * @see https://book.cakephp.org/4/en/views.html#the-app-view
  */
 class AppView extends View
 {
@@ -32,10 +31,6 @@ class AppView extends View
      * Use this method to add common initialization code like adding helpers.
      *
      * e.g. `$this->addHelper('Html');`
-     *
-     * @return void
      */
-    public function initialize(): void
-    {
-    }
+    public function initialize(): void {}
 }

@@ -1,25 +1,23 @@
 <?php
+
 declare(strict_types=1);
 
-/**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+/*
+ * This file is part of PHP CS Fixer.
  *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
  *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         3.3.4
- * @license       https://opensource.org/licenses/mit-license.php MIT License
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
+
 namespace App\Controller;
 
 use Cake\Event\EventInterface;
 
 /**
- * Error Handling Controller
+ * Error Handling Controller.
  *
  * Controller used by ExceptionRenderer to render error responses.
  */
@@ -27,8 +25,6 @@ class ErrorController extends AppController
 {
     /**
      * Initialization hook method.
-     *
-     * @return void
      */
     public function initialize(): void
     {
@@ -38,18 +34,18 @@ class ErrorController extends AppController
     /**
      * beforeFilter callback.
      *
-     * @param \Cake\Event\EventInterface<\Cake\Controller\Controller> $event Event.
-     * @return \Cake\Http\Response|null|void
+     * @param \Cake\Event\EventInterface<\Cake\Controller\Controller> $event event
+     *
+     * @return null|\Cake\Http\Response|void
      */
-    public function beforeFilter(EventInterface $event)
-    {
-    }
+    public function beforeFilter(EventInterface $event) {}
 
     /**
      * beforeRender callback.
      *
-     * @param \Cake\Event\EventInterface<\Cake\Controller\Controller> $event Event.
-     * @return \Cake\Http\Response|null|void
+     * @param \Cake\Event\EventInterface<\Cake\Controller\Controller> $event event
+     *
+     * @return null|\Cake\Http\Response|void
      */
     public function beforeRender(EventInterface $event)
     {
@@ -61,10 +57,9 @@ class ErrorController extends AppController
     /**
      * afterFilter callback.
      *
-     * @param \Cake\Event\EventInterface<\Cake\Controller\Controller> $event Event.
-     * @return \Cake\Http\Response|null|void
+     * @param \Cake\Event\EventInterface<\Cake\Controller\Controller> $event event
+     *
+     * @return null|\Cake\Http\Response|void
      */
-    public function afterFilter(EventInterface $event)
-    {
-    }
+    public function afterFilter(EventInterface $event) {}
 }

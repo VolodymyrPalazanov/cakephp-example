@@ -1,23 +1,37 @@
 <?php
+
 declare(strict_types=1);
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\MathController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\MathController Test Case
+ * App\Controller\MathController Test Case.
  *
  * @uses \App\Controller\MathController
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class MathControllerTest extends TestCase
+final class MathControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
     /**
-     * Fixtures
+     * Fixtures.
      *
      * @var array<string>
      */
@@ -26,57 +40,52 @@ class MathControllerTest extends TestCase
     ];
 
     /**
-     * Test index method
+     * Test index method.
      *
-     * @return void
      * @uses \App\Controller\MathController::index()
      */
     public function testIndex(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        self::markTestIncomplete('Not implemented yet.');
     }
 
     /**
-     * Test view method
+     * Test view method.
      *
-     * @return void
      * @uses \App\Controller\MathController::view()
      */
     public function testView(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        self::markTestIncomplete('Not implemented yet.');
     }
 
     /**
-     * Test add method
+     * Test add method.
      *
-     * @return void
      * @uses \App\Controller\MathController::add()
      */
     public function testAdd(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        self::markTestIncomplete('Not implemented yet.');
     }
 
     /**
-     * Test edit method
+     * Test edit method.
      *
-     * @return void
      * @uses \App\Controller\MathController::edit()
      */
     public function testEdit(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        self::markTestIncomplete('Not implemented yet.');
     }
 
     /**
-     * Test delete method
+     * Test delete method.
      *
-     * @return void
      * @uses \App\Controller\MathController::delete()
      */
     public function testDelete(): void
     {
-        $this->markTestIncomplete('Not implemented yet.');
+        self::markTestIncomplete('Not implemented yet.');
     }
 }

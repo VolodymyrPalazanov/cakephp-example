@@ -1,32 +1,28 @@
 <?php
+
 declare(strict_types=1);
 
-/**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+/*
+ * This file is part of PHP CS Fixer.
  *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
  *
- * @copyright Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link      https://cakephp.org CakePHP(tm) Project
- * @since     0.2.9
- * @license   https://opensource.org/licenses/mit-license.php MIT License
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
+
 namespace App\Controller;
 
 use Cake\Controller\Controller;
-use Cake\Controller\Component\AuthComponent;
-use Authentication\Controller\Component\AuthenticationComponent;
 
 /**
- * Application Controller
+ * Application Controller.
  *
  * Add your application-wide methods in the class below, your controllers
  * will inherit them.
  *
- * @link https://book.cakephp.org/4/en/controllers.html#the-app-controller
+ * @see https://book.cakephp.org/4/en/controllers.html#the-app-controller
  */
 class AppController extends Controller
 {
@@ -36,34 +32,32 @@ class AppController extends Controller
      * Use this method to add common initialization code like loading components.
      *
      * e.g. `$this->loadComponent('FormProtection');`
-     *
-     * @return void
      */
     public function initialize(): void
     {
         parent::initialize();
 
         $this->loadComponent('Flash');
-       /* $this->loadComponent('Auth', [
-            'authenticate' => [
-                'Form' => [
-                    'fields' => [
-                        'Number1' => 'number1',
-                        'Number2' => 'number2',
-                    ]
-                ]
-            ],
-            'addnumbersAction' => [
-                'controller' => 'Math',
-                'action' => 'addnumbers'
-            ]
+        /* $this->loadComponent('Auth', [
+             'authenticate' => [
+                 'Form' => [
+                     'fields' => [
+                         'Number1' => 'number1',
+                         'Number2' => 'number2',
+                     ]
+                 ]
+             ],
+             'addnumbersAction' => [
+                 'controller' => 'Math',
+                 'action' => 'addnumbers'
+             ]
 
-        ]); */
+         ]); */
 
         /*
          * Enable the following component for recommended CakePHP form protection settings.
          * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
          */
-        //$this->loadComponent('FormProtection');
+        // $this->loadComponent('FormProtection');
     }
 }

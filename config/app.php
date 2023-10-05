@@ -1,5 +1,17 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 use Cake\Cache\Engine\FileEngine;
 use Cake\Database\Connection;
 use Cake\Database\Driver\Mysql;
@@ -55,15 +67,15 @@ return [
         'dir' => 'src',
         'webroot' => 'webroot',
         'wwwRoot' => WWW_ROOT,
-        //'baseUrl' => env('SCRIPT_NAME'),
+        // 'baseUrl' => env('SCRIPT_NAME'),
         'fullBaseUrl' => false,
         'imageBaseUrl' => 'img/',
         'cssBaseUrl' => 'css/',
         'jsBaseUrl' => 'js/',
         'paths' => [
-            'plugins' => [ROOT . DS . 'plugins' . DS],
-            'templates' => [ROOT . DS . 'templates' . DS],
-            'locales' => [RESOURCES . 'locales' . DS],
+            'plugins' => [ROOT.DS.'plugins'.DS],
+            'templates' => [ROOT.DS.'templates'.DS],
+            'locales' => [RESOURCES.'locales'.DS],
         ],
     ],
 
@@ -87,13 +99,11 @@ return [
      * enable timestamping regardless of debug value.
      */
     'Asset' => [
-        //'timestamp' => true,
+        // 'timestamp' => true,
         // 'cacheTime' => '+1 year'
     ],
 
-    /*
-     * Configure the cache adapters.
-     */
+    // Configure the cache adapters.
     'Cache' => [
         'default' => [
             'className' => FileEngine::class,
@@ -110,7 +120,7 @@ return [
         '_cake_core_' => [
             'className' => FileEngine::class,
             'prefix' => 'myapp_cake_core_',
-            'path' => CACHE . 'persistent' . DS,
+            'path' => CACHE.'persistent'.DS,
             'serialize' => true,
             'duration' => '+1 years',
             'url' => env('CACHE_CAKECORE_URL', null),
@@ -125,7 +135,7 @@ return [
         '_cake_model_' => [
             'className' => FileEngine::class,
             'prefix' => 'myapp_cake_model_',
-            'path' => CACHE . 'models' . DS,
+            'path' => CACHE.'models'.DS,
             'serialize' => true,
             'duration' => '+1 years',
             'url' => env('CACHE_CAKEMODEL_URL', null),
@@ -222,11 +232,9 @@ return [
             'host' => 'localhost',
             'port' => 25,
             'timeout' => 30,
-            /*
-             * It is recommended to set these options through your environment or app_local.php
-             */
-            //'username' => null,
-            //'password' => null,
+            // It is recommended to set these options through your environment or app_local.php
+            // 'username' => null,
+            // 'password' => null,
             'client' => null,
             'tls' => false,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
@@ -246,11 +254,9 @@ return [
         'default' => [
             'transport' => 'default',
             'from' => 'you@localhost',
-            /*
-             * Will by default be set to config value of App.encoding, if that exists otherwise to UTF-8.
-             */
-            //'charset' => 'utf-8',
-            //'headerCharset' => 'utf-8',
+            // Will by default be set to config value of App.encoding, if that exists otherwise to UTF-8.
+            // 'charset' => 'utf-8',
+            // 'headerCharset' => 'utf-8',
         ],
     ],
 
@@ -284,10 +290,8 @@ return [
             'persistent' => false,
             'timezone' => 'UTC',
 
-            /*
-             * For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support, in CakePHP 3.6
-             */
-            //'encoding' => 'utf8mb4',
+            // For MariaDB/MySQL the internal default changed from utf8 to utf8mb4, aka full utf-8 support, in CakePHP 3.6
+            // 'encoding' => 'utf8mb4',
 
             /*
              * If your MySQL server is configured with `skip-character-set-client-handshake`
@@ -315,29 +319,25 @@ return [
              * mysql configuration directive 'innodb_stats_on_metadata = 0'
              * which is the recommended value in production environments
              */
-            //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
+            // 'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
         ],
 
-        /*
-         * The test connection is used during the test suite.
-         */
+        // The test connection is used during the test suite.
         'test' => [
             'className' => Connection::class,
             'driver' => Mysql::class,
             'persistent' => false,
             'timezone' => 'UTC',
-            //'encoding' => 'utf8mb4',
+            // 'encoding' => 'utf8mb4',
             'flags' => [],
             'cacheMetadata' => true,
             'quoteIdentifiers' => false,
             'log' => false,
-            //'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
+            // 'init' => ['SET GLOBAL innodb_stats_on_metadata = 0'],
         ],
     ],
 
-    /*
-     * Configures logging options
-     */
+    // Configures logging options
     'Log' => [
         'debug' => [
             'className' => FileLog::class,

@@ -1,19 +1,17 @@
 <?php
+
 declare(strict_types=1);
 
-/**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+/*
+ * This file is part of PHP CS Fixer.
  *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
  *
- * @copyright     Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link          https://cakephp.org CakePHP(tm) Project
- * @since         1.2.0
- * @license       https://opensource.org/licenses/mit-license.php MIT License
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
+
 namespace App\Test\TestCase\Controller;
 
 use Cake\Core\Configure;
@@ -22,20 +20,22 @@ use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
- * PagesControllerTest class
+ * PagesControllerTest class.
  *
  * @uses \App\Controller\PagesController
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class PagesControllerTest extends TestCase
+final class PagesControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
     /**
-     * testDisplay method
-     *
-     * @return void
+     * testDisplay method.
      */
-    public function testDisplay()
+    public function testDisplay(): void
     {
         Configure::write('debug', true);
         $this->get('/pages/home');
@@ -45,11 +45,9 @@ class PagesControllerTest extends TestCase
     }
 
     /**
-     * Test that missing template renders 404 page in production
-     *
-     * @return void
+     * Test that missing template renders 404 page in production.
      */
-    public function testMissingTemplate()
+    public function testMissingTemplate(): void
     {
         Configure::write('debug', false);
         $this->get('/pages/not_existing');
@@ -59,11 +57,9 @@ class PagesControllerTest extends TestCase
     }
 
     /**
-     * Test that missing template in debug mode renders missing_template error page
-     *
-     * @return void
+     * Test that missing template in debug mode renders missing_template error page.
      */
-    public function testMissingTemplateInDebug()
+    public function testMissingTemplateInDebug(): void
     {
         Configure::write('debug', true);
         $this->get('/pages/not_existing');
@@ -75,11 +71,9 @@ class PagesControllerTest extends TestCase
     }
 
     /**
-     * Test directory traversal protection
-     *
-     * @return void
+     * Test directory traversal protection.
      */
-    public function testDirectoryTraversalProtection()
+    public function testDirectoryTraversalProtection(): void
     {
         $this->get('/pages/../Layout/ajax');
         $this->assertResponseCode(403);
@@ -88,10 +82,8 @@ class PagesControllerTest extends TestCase
 
     /**
      * Test that CSRF protection is applied to page rendering.
-     *
-     * @return void
      */
-    public function testCsrfAppliedError()
+    public function testCsrfAppliedError(): void
     {
         $this->post('/pages/home', ['hello' => 'world']);
 
@@ -101,15 +93,13 @@ class PagesControllerTest extends TestCase
 
     /**
      * Test that CSRF protection is applied to page rendering.
-     *
-     * @return void
      */
-    public function testCsrfAppliedOk()
+    public function testCsrfAppliedOk(): void
     {
         $this->enableCsrfToken();
         $this->post('/pages/home', ['hello' => 'world']);
 
-        $this->assertThat(403, $this->logicalNot(new StatusCode($this->_response)));
+        self::assertThat(403, self::logicalNot(new StatusCode($this->_response)));
         $this->assertResponseNotContains('CSRF');
     }
 }

@@ -1,29 +1,41 @@
 <?php
+
 declare(strict_types=1);
+
+/*
+ * This file is part of PHP CS Fixer.
+ *
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
+ *
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
 
 namespace App\Test\TestCase\Controller\Component;
 
 use App\Controller\MathController; // Poprawa: Import kontrolera, który ma być testowany
-use App\Controller\Component\MatComponent;
 use Cake\Controller\ComponentRegistry;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\Component\MatComponent Test Case
+ * App\Controller\Component\MatComponent Test Case.
+ *
+ * @internal
+ *
+ * @coversNothing
  */
-class MatComponentTest extends TestCase
+final class MatComponentTest extends TestCase
 {
     /**
-     * Test subject
+     * Test subject.
      *
      * @var \App\Controller\MathController
      */
     public $MathController; // Poprawa: Zmiana nazwy zmiennej na MathController
 
     /**
-     * setUp method
-     *
-     * @return void
+     * setUp method.
      */
     protected function setUp(): void
     {
@@ -34,7 +46,17 @@ class MatComponentTest extends TestCase
         $this->MathController = new MathController($registry); // Poprawa: Przekazanie ComponentRegistry do kontrolera
     }
 
-    public function testAddNumbers()
+    /**
+     * tearDown method.
+     */
+    protected function tearDown(): void
+    {
+        $this->MathController = null;
+
+        parent::tearDown();
+    }
+
+    public function testAddNumbers(): void
     {
         // Call the controller action
         $result = $this->MathController->addNumbers();
@@ -43,18 +65,6 @@ class MatComponentTest extends TestCase
         $viewVars = $this->MathController->viewVars;
 
         // Assert that the result is as expected
-        $this->assertEquals(13, $viewVars['sum']); // Poprawa: Sprawdzenie wyniku na podstawie zmiennych widoku
-    }
-
-    /**
-     * tearDown method
-     *
-     * @return void
-     */
-    protected function tearDown(): void
-    {
-        unset($this->MathController);
-
-        parent::tearDown();
+        self::assertSame(13, $viewVars['sum']); // Poprawa: Sprawdzenie wyniku na podstawie zmiennych widoku
     }
 }

@@ -1,19 +1,17 @@
 <?php
+
 declare(strict_types=1);
 
-/**
- * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
- * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
+/*
+ * This file is part of PHP CS Fixer.
  *
- * Licensed under The MIT License
- * For full copyright and license information, please see the LICENSE.txt
- * Redistributions of files must retain the above copyright notice.
+ * (c) Fabien Potencier <fabien@symfony.com>
+ *     Dariusz Rumiński <dariusz.ruminski@gmail.com>
  *
- * @copyright Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
- * @link      https://cakephp.org CakePHP(tm) Project
- * @since     3.3.0
- * @license   https://opensource.org/licenses/mit-license.php MIT License
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
+
 namespace App;
 
 use Cake\Core\Configure;
@@ -40,15 +38,13 @@ class Application extends BaseApplication
 {
     /**
      * Load all the application configuration and bootstrap logic.
-     *
-     * @return void
      */
     public function bootstrap(): void
     {
         // Call parent to load bootstrap from files.
         parent::bootstrap();
 
-        if (PHP_SAPI === 'cli') {
+        if (\PHP_SAPI === 'cli') {
             $this->bootstrapCli();
         } else {
             FactoryLocator::add(
@@ -71,8 +67,9 @@ class Application extends BaseApplication
     /**
      * Setup the middleware queue your application will use.
      *
-     * @param \Cake\Http\MiddlewareQueue $middlewareQueue The middleware queue to setup.
-     * @return \Cake\Http\MiddlewareQueue The updated middleware queue.
+     * @param \Cake\Http\MiddlewareQueue $middlewareQueue the middleware queue to setup
+     *
+     * @return \Cake\Http\MiddlewareQueue the updated middleware queue
      */
     public function middleware(MiddlewareQueue $middlewareQueue): MiddlewareQueue
     {
@@ -101,7 +98,8 @@ class Application extends BaseApplication
             // https://book.cakephp.org/4/en/security/csrf.html#cross-site-request-forgery-csrf-middleware
             ->add(new CsrfProtectionMiddleware([
                 'httponly' => true,
-            ]));
+            ]))
+        ;
 
         return $middlewareQueue;
     }
@@ -109,20 +107,16 @@ class Application extends BaseApplication
     /**
      * Register application container services.
      *
-     * @param \Cake\Core\ContainerInterface $container The Container to update.
-     * @return void
-     * @link https://book.cakephp.org/4/en/development/dependency-injection.html#dependency-injection
+     * @param \Cake\Core\ContainerInterface $container the Container to update
+     *
+     * @see https://book.cakephp.org/4/en/development/dependency-injection.html#dependency-injection
      */
-    public function services(ContainerInterface $container): void
-    {
-    }
+    public function services(ContainerInterface $container): void {}
 
     /**
      * Bootstrapping for CLI application.
      *
      * That is when running commands.
-     *
-     * @return void
      */
     protected function bootstrapCli(): void
     {
