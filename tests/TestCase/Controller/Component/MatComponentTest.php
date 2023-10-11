@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller\Component;
 
-use App\Controller\MathController;
+use App\Controller\Component\MatComponent;
 use Cake\TestSuite\TestCase;
 
 /**
