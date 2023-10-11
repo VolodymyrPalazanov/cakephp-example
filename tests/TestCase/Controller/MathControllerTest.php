@@ -50,7 +50,7 @@ final class MathControllerTest extends TestCase
             'number1' => 5,
             'number2' => 7,
         ];
-
+        $this->enableCsrfToken();
         $this->post('/math/add', $data);
 
         $this->assertRedirect(['action' => 'index']);
