@@ -22,7 +22,7 @@ class MatComponentTest extends TestCase
     /**
      * setUp method.
      */
-    public function setUp() {
+    public function setUp(): void {
         parent::setUp();
         $this->MatComponent = new MatComponent(new ComponentCollection());
     }
