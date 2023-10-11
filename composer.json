@@ -15,7 +15,7 @@
     "require-dev": {
         "cakephp/bake": "^3.0.0",
         "cakephp/cakephp-codesniffer": "^5.0",
-        "cakephp/debug_kit": "^5.0.0",
+        "cakephp/debug_kit": "^5.0",
         "friendsofphp/php-cs-fixer": "^3.34",
         "josegonzalez/dotenv": "^4.0",
         "phpmd/phpmd": "^2.14",
