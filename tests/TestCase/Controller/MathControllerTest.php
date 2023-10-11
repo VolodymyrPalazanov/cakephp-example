@@ -35,9 +35,16 @@ final class MathControllerTest extends TestCase
      *
      * @var array<string>
      */
-    protected array $fixtures = [
-        'app.Math',
-    ];
+    public function testAddNumbers(): void
+    {
+        $this->get('/math/addNumbers');
+
+        // Assert that the response status code is 200 (OK)
+        $this->assertResponseOk(); // Check that the response status code is 200
+        $this->assertResponseContains('Number 1:'); // Check that the response contains expected content
+        $this->assertResponseContains('Number 2:');
+        $this->assertResponseContains('Sum:');
+    }
 
     /**
      * Test index method.
@@ -46,7 +53,8 @@ final class MathControllerTest extends TestCase
      */
     public function testIndex(): void
     {
-        self::markTestIncomplete('Not implemented yet.');
+        $this->get('/math/index');
+        $this->assertResponseOk();
     }
 
     /**
@@ -56,7 +64,8 @@ final class MathControllerTest extends TestCase
      */
     public function testView(): void
     {
-        self::markTestIncomplete('Not implemented yet.');
+        $this->get('/math/view');
+        $this->assertResponseOk();
     }
 
     /**
@@ -66,7 +75,16 @@ final class MathControllerTest extends TestCase
      */
     public function testAdd(): void
     {
-        self::markTestIncomplete('Not implemented yet.');
+        $data = [
+            'number1' => 5,
+            'number2' => 7,
+        ];
+    
+        $this->post('/math/add', $data);
+    
+        // Perform assertions for the specific behavior you want to test
+        $this->assertRedirect(['action' => 'index']);
+        $this->assertFlashElement('Flash/success');
     }
 
     /**
@@ -76,7 +94,8 @@ final class MathControllerTest extends TestCase
      */
     public function testEdit(): void
     {
-        self::markTestIncomplete('Not implemented yet.');
+        $this->get('/math/edit');
+        $this->assertResponseOk();
     }
 
     /**
@@ -86,6 +105,7 @@ final class MathControllerTest extends TestCase
      */
     public function testDelete(): void
     {
-        self::markTestIncomplete('Not implemented yet.');
+        $this->get('/math/delete');
+        $this->assertResponseOk();
     }
 }
