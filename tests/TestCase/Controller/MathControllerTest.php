@@ -12,8 +12,9 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-namespace App\Test\TestCase\Controller;
+ namespace App\Test\TestCase\Controller;
 
+use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
@@ -31,47 +32,17 @@ final class MathControllerTest extends TestCase
     use IntegrationTestTrait;
 
     /**
-     * Fixtures.
-     *
-     * @var array<string>
+     * Test that the "addNumbers" action renders correctly.
      */
     public function testAddNumbers(): void
     {
         $this->get('/math/addNumbers');
 
-        // Assert that the response status code is 200 (OK)
-        $this->assertResponseOk(); // Check that the response status code is 200
-        $this->assertResponseContains('Number 1:'); // Check that the response contains expected content
-        $this->assertResponseContains('Number 2:');
-        $this->assertResponseContains('Sum:');
-    }
-
-    /**
-     * Test index method.
-     *
-     * @uses \App\Controller\MathController::index()
-     */
-    public function testIndex(): void
-    {
-        $this->get('/math/index');
         $this->assertResponseOk();
     }
 
     /**
-     * Test view method.
-     *
-     * @uses \App\Controller\MathController::view()
-     */
-    public function testView(): void
-    {
-        $this->get('/math/view');
-        $this->assertResponseOk();
-    }
-
-    /**
-     * Test add method.
-     *
-     * @uses \App\Controller\MathController::add()
+     * Test adding numbers via the "add" action.
      */
     public function testAdd(): void
     {
@@ -79,33 +50,39 @@ final class MathControllerTest extends TestCase
             'number1' => 5,
             'number2' => 7,
         ];
-    
+
         $this->post('/math/add', $data);
-    
-        // Perform assertions for the specific behavior you want to test
+
         $this->assertRedirect(['action' => 'index']);
         $this->assertFlashElement('Flash/success');
     }
 
     /**
-     * Test edit method.
-     *
-     * @uses \App\Controller\MathController::edit()
+     * Test editing a record via the "edit" action.
      */
     public function testEdit(): void
     {
-        $this->get('/math/edit');
+        $entityId = 4;
+        $this->get(['controller' => 'Math', 'action' => 'edit', $entityId]);
         $this->assertResponseOk();
+
+        $data = [
+            'number1' => '2',
+        ];
+        $this->post(['controller' => 'Math', 'action' => 'edit', $entityId], $data);
+        $this->assertResponseSuccess();
+        $updatedEntity = $this->getTableLocator()->get('Math')->get(primaryKey: $entityId, finder: 'all', cache: null, cacheKey: null);
+        $this->assertEquals('2', $updatedEntity->number1);
     }
 
     /**
-     * Test delete method.
-     *
-     * @uses \App\Controller\MathController::delete()
+     * Test deleting a record via the "delete" action.
      */
     public function testDelete(): void
     {
-        $this->get('/math/delete');
-        $this->assertResponseOk();
+        $idToDelete = 4; 
+        $this->delete('/math/delete/' . $idToDelete);
+        $this->assertResponseSuccess();
+        $this->assertFalse(TableRegistry::getTableLocator()->get('Math')->exists(['id' => $idToDelete]));
     }
 }

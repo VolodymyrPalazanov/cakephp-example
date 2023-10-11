@@ -24,6 +24,7 @@ class MathTableTest extends TestCase
      * @var array<string>
      */
     protected array $fixtures = [
+        'app.Math',
     ];
 
     /**
