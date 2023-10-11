@@ -17,17 +17,14 @@ class MatComponentTest extends TestCase
      *
      * @var \App\Controller\MathController
      */
-    public $MathController;
+    public $MatComponent;
 
     /**
      * setUp method.
      */
-    protected function setUp(): void
-    {
+    public function setUp() {
         parent::setUp();
-
-        // Create an instance of the real MathController
-        $this->MathController = new MathController();
+        $this->MatComponent = new MatComponent(new ComponentCollection());
     }
 
     /**
@@ -40,15 +37,8 @@ class MatComponentTest extends TestCase
         parent::tearDown();
     }
 
-    public function testAddNumbers(): void
-    {
-        // Call the controller action
-        $result = $this->MathController->addNumbers();
-
-        // Get the view vars from the controller
-        $viewVars = $this->MathController->viewVars;
-
-        // Assert that the result is as expected
-        self::assertSame(13, $viewVars['sum']);
+    public function testAdd() {
+        $result = $this->MatComponent->add(2, 3);
+        $this->assertEquals(5, $result);
     }
 }
