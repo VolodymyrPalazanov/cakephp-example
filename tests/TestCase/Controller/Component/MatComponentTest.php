@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller\Component;
 
+use Cake\Controller\ComponentRegistry;
+use Cake\Controller\Component\ComponentCollection;
 use App\Controller\Component\MatComponent;
 use Cake\TestSuite\TestCase;
 
