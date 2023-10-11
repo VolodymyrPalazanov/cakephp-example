@@ -58,7 +58,7 @@ class MatComponentTest extends TestCase
      */
     public function testAdd(): void
     {
-        $result = $this->Mat->add(2,3);
-        $this->assertEquals(5, $result);
+        $result = $this->Mat->add(18,14);
+        $this->assertEquals(32, $result);
     }
 }

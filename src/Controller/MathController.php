@@ -42,8 +42,8 @@ class MathController extends AppController
      */
     public function addNumbers()
     {
-        $number1 = 10;
-        $number2 = 3;
+        $number1 = 18;
+        $number2 = 14;
         $sum = $this->Mat->add($number1, $number2);
 
         $this->set('number1', $number1);
