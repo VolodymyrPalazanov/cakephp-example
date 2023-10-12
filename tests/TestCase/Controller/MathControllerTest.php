@@ -31,6 +31,20 @@ final class MathControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
+    /**
+     * Define the controller to use in the test
+     *
+     * @var string
+     */
+    public $controller = 'Math';
+
+    /**
+     * Disable CSRF protection for the 'add' action.
+     *
+     * @var array
+     */
+    public $csrfWhitelist = ['add'];
+
     public function setUp(): void
     {
         parent::setUp();
