@@ -15,6 +15,7 @@ declare(strict_types=1);
 namespace App\Controller;
 
 use Cake\Controller\Controller;
+use Cake\Event\EventInterface;
 
 
 /**
@@ -29,6 +30,9 @@ class MathController extends AppController
      *
      * @var \App\Controller\Component\MatComponent
      */
+
+    public $components = ['Security'];
+
     private $Mat;
 
     public function initialize(): void

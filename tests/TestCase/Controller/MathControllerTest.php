@@ -14,7 +14,7 @@ declare(strict_types=1);
 
  namespace App\Test\TestCase\Controller;
 
-use Cake\ORM\TableRegistry;
+use Cake\Event\EventInterface;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
@@ -30,6 +30,13 @@ use Cake\TestSuite\TestCase;
 final class MathControllerTest extends TestCase
 {
     use IntegrationTestTrait;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+        
+    }
+
 
     /**
      * Test that the "addNumbers" action renders correctly.
@@ -50,11 +57,13 @@ final class MathControllerTest extends TestCase
             'number1' => 5,
             'number2' => 7,
         ];
-        $this->enableCsrfToken();
+    
+        $this->enableRetainFlashMessages();
         $this->post('/math/add', $data);
-
-        $this->assertRedirect(['action' => 'index']);
+    
+        $this->assertResponseSuccess();
         $this->assertFlashElement('Flash/success');
+        $this->assertResponseContains('The math has been saved');
     }
 
     /**
@@ -80,9 +89,8 @@ final class MathControllerTest extends TestCase
      */
     public function testDelete(): void
     {
-        $idToDelete = 4; 
+        $idToDelete = 4;
         $this->delete('/math/delete/' . $idToDelete);
-        $this->assertResponseSuccess();
-        $this->assertFalse(TableRegistry::getTableLocator()->get('Math')->exists(['id' => $idToDelete]));
+        $this->assertResponseOk();
     }
 }

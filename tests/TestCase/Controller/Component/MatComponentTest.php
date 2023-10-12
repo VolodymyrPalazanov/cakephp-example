@@ -33,7 +33,7 @@ class MatComponentTest extends TestCase
         $request = $this->getMockBuilder(\Cake\Http\ServerRequest::class)
         ->getMock();
         $controller = new Controller($request);
-        $registry = new ComponentRegistry($controller); // Pass the controller instance to ComponentRegistry
+        $registry = new ComponentRegistry($controller);
 
         $this->Mat = new MatComponent($registry);
     }
