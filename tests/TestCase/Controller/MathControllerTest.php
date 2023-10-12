@@ -59,18 +59,16 @@ final class MathControllerTest extends TestCase
      */
     public function testAdd()
     {
-        $req = $this->get('/math/addNumbers');
+        $req = $this->get('/math/add');
         $csrfToken = $req->getCookie('csrfToken')->getValue();
 
-        // Include the CSRF token in the request data
         $data = [
             'number1' => 5,
             'number2' => 7,
-            '_csrfToken' => $csrfToken,
+           '_csrfToken' => $csrfToken,
         ];
 
-        // Manually set the CSRF token in the session
-        $this->session(['csrfToken' => $csrfToken]);
+       $this->session(['csrfToken' => $csrfToken]);
 
         $this->post('/math/add', $data);
 
