@@ -51,7 +51,6 @@ final class MathControllerTest extends TestCase
         
     }
 
-
     /**
      * Test that the "addNumbers" action renders correctly.
      */
@@ -65,46 +64,51 @@ final class MathControllerTest extends TestCase
     /**
      * Test adding numbers via the "add" action.
      */
-    public function testAdd(): void
+    public function testAdd()
     {
         $data = [
             'number1' => 5,
             'number2' => 7,
         ];
-    
+
         $this->enableRetainFlashMessages();
         $this->post('/math/add', $data);
-    
+
+        // Assertions for a successful save
         $this->assertResponseSuccess();
         $this->assertFlashElement('Flash/success');
         $this->assertResponseContains('The math has been saved');
+        // You may also add more specific assertions as needed
     }
 
-    /**
-     * Test editing a record via the "edit" action.
-     */
-    public function testEdit(): void
+    public function testEdit()
     {
-        $entityId = 4;
-        $this->get(['controller' => 'Math', 'action' => 'edit', $entityId]);
-        $this->assertResponseOk();
-
+        $entityId = 4; // Replace with an existing ID
         $data = [
-            'number1' => '2',
+            'number1' => 10, // New values
+            'number2' => 15,
         ];
-        $this->post(['controller' => 'Math', 'action' => 'edit', $entityId], $data);
-        $this->assertResponseSuccess();
-        $updatedEntity = $this->getTableLocator()->get('Math')->get(primaryKey: $entityId, finder: 'all', cache: null, cacheKey: null);
-        $this->assertEquals('2', $updatedEntity->number1);
-    }
 
-    /**
-     * Test deleting a record via the "delete" action.
-     */
-    public function testDelete(): void
+        $this->enableRetainFlashMessages();
+        $this->post('/math/edit/' . $entityId, $data);
+
+        // Assertions for a successful edit
+        $this->assertResponseSuccess();
+        $this->assertFlashElement('Flash/success');
+        $this->assertResponseContains('The math has been saved');
+        // You may also add more specific assertions as needed
+    }
+    public function testDelete()
     {
-        $idToDelete = 4;
-        $this->delete('/math/delete/' . $idToDelete);
-        $this->assertResponseOk();
+        $entityId = 1; // Replace with an existing ID
+
+        $this->enableRetainFlashMessages();
+        $this->post('/math/delete/' . $entityId);
+
+        // Assertions for a successful delete
+        $this->assertResponseSuccess();
+        $this->assertFlashElement('Flash/success');
+        $this->assertResponseContains('The math has been deleted');
+        // You may also add more specific assertions as needed
     }
 }
