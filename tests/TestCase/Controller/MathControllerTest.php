@@ -14,9 +14,7 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
-use Cake\Event\EventInterface;
 use Cake\ORM\TableRegistry;
-use Cake\TestSuite\Constraint\Response\StatusCode;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
@@ -36,14 +34,10 @@ final class MathControllerTest extends TestCase
     public function setUp(): void
     {
         parent::setUp();
-        $config = TableRegistry::getTableLocator()->exists('Math') ? [] : ['className' => MathTable::class];
-        $this->MathTable = TableRegistry::getTableLocator()->get('Math', $config);
-        // Additional setup code goes here
     }
 
     public function tearDown(): void
     {
-        // Additional teardown code goes here
         parent::tearDown();
     }
 
