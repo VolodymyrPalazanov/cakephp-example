@@ -52,9 +52,8 @@ class MathTableTest extends TestCase
      */
     public function testValidationDefault(): void
     {
-        $validator = new \Cake\Validation\Validator();
-        $validator = $this->MathTable->validationDefault($validator);
-
+        $validator = new \Cake\Validation\Validator(); // Create a new validator object
+        $validator = $this->MathTable->validationDefault($validator); // Apply your validation rules
         // Check the validation rules
         $this->assertTrue($validator->hasField('Number1'));
         $this->assertTrue($validator->hasField('Number2'));
