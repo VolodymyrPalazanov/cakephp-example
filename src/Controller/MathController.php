@@ -38,8 +38,7 @@ class MathController extends AppController
     public function initialize(): void
     {
         parent::initialize();
-        $this->loadComponent('Mat');
-        $this->Mat = $this->loadComponent('Mat');
+        $this-> Mat = $this->loadComponent('Mat');
     }
 
     /**
@@ -47,8 +46,8 @@ class MathController extends AppController
      */
     public function addNumbers()
     {
-        $number1 = 18;
-        $number2 = 14;
+        $number1 = 76;
+        $number2 = 152;
         $sum = $this->Mat->add($number1, $number2);
 
         $this->set('number1', $number1);

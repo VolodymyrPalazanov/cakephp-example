@@ -59,8 +59,11 @@ final class MathControllerTest extends TestCase
      */
     public function testAdd()
     {
-        $req = $this->get('/math/add');
-        $csrfToken = $req->getCookie('csrfToken')->getValue();
+        $this->get('/math/addNumbers');
+
+        $cookieCollection = $this->_response->getCookieCollection();
+        $csrfCookie = $cookieCollection->get('csrfToken');
+        $csrfToken = $csrfCookie->getValue();
 
         $data = [
             'number1' => 5,
