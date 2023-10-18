@@ -32,6 +32,15 @@ final class MathControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
+    /**
+     * Fixtures
+     *
+     * @var array<string>
+     */
+    protected array $fixtures = [
+        'app.Math',
+    ];
+
     public function setUp(): void
     {
         parent::setUp();
@@ -59,19 +68,11 @@ final class MathControllerTest extends TestCase
      */
     public function testAdd()
     {
-        $this->get('/math/addNumbers');
-
-        $cookieCollection = $this->_response->getCookieCollection();
-        $csrfCookie = $cookieCollection->get('csrfToken');
-        $csrfToken = $csrfCookie->getValue();
-
+        $this->get('/math/add'); 
         $data = [
             'number1' => 5,
             'number2' => 7,
-           '_csrfToken' => $csrfToken,
         ];
-
-       $this->session(['csrfToken' => $csrfToken]);
 
         $this->post('/math/add', $data);
 
