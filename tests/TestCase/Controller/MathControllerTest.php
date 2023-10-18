@@ -66,7 +66,8 @@ final class MathControllerTest extends TestCase
 
     public function testEdit()
     {
-        $this->get('/math/edit'); 
+        $entityId = 1; 
+        $this->get('/math/edit/' . $entityId); 
         $this->assertResponseOk();
         $this->assertResponseContains('The math has been saved');
     }
