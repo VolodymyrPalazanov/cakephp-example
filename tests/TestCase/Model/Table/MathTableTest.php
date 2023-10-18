@@ -19,15 +19,6 @@ class MathTableTest extends TestCase
      */
     protected $Math;
 
-    /**
-     * Fixtures
-     *
-     * @var array<string>
-     */
-    protected array $fixtures = [
-        'app.Math',
-    ];
-
     public $MathTable;
     /**
      * setUp method

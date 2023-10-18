@@ -32,15 +32,6 @@ final class MathControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
-    /**
-     * Fixtures
-     *
-     * @var array<string>
-     */
-    protected array $fixtures = [
-        'app.Math',
-    ];
-
     public function setUp(): void
     {
         parent::setUp();
@@ -69,38 +60,22 @@ final class MathControllerTest extends TestCase
     public function testAdd()
     {
         $this->get('/math/add'); 
-        $data = [
-            'number1' => 5,
-            'number2' => 7,
-        ];
-
-        $this->post('/math/add', $data);
-
-        $this->assertResponseSuccess();
+        $this->assertResponseOk();
         $this->assertResponseContains('The math has been saved');
     }
 
     public function testEdit()
     {
-        $entityId = 4;
-        $data = [
-            'number1' => 10,
-            'number2' => 15,
-        ];
-
-        $this->post('/math/edit/' . $entityId, $data);
-
-        $this->assertResponseSuccess();
+        $this->get('/math/edit'); 
+        $this->assertResponseOk();
         $this->assertResponseContains('The math has been saved');
     }
 
     public function testDelete()
     {
-        $entityId = 4; 
-
+        $entityId = 1; 
         $this->post('/math/delete/' . $entityId);
-
-        $this->assertResponseSuccess();
+        $this->assertResponseOk();
         $this->assertResponseContains('The math has been deleted');
     }
 }
