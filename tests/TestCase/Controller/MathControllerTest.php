@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
+use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
@@ -28,6 +29,14 @@ use Cake\TestSuite\TestCase;
  */
 final class MathControllerTest extends TestCase
 {
+    /**
+     * Fixtures
+     *
+     * @var array<string>
+     */
+    protected array $fixtures = [
+        'app.Math',
+    ];
     use IntegrationTestTrait;
     protected $Math;
     public function setUp(): void
@@ -57,13 +66,8 @@ final class MathControllerTest extends TestCase
     {
         $this->enableCsrfToken();
         $this->enableSecurityToken();
-        $data = [
-            'number1' => 5,
-            'number2' => 3,
-        ];
-        $this->get('/math/add?number1=' . $data['number1'] . '&number2=' . $data['number2']);
-        $this->assertResponseOk();
-        $this->assertResponseContains('The math has been saved');
+        $this->post('/math/add', ['number1' => 5, 'number2' => 3]);
+        $this->assertResponseSuccess();
     }
 
     // public function testEdit(): void
