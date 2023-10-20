@@ -5,13 +5,6 @@ class MathFixture extends TestFixture
 {
     public function init(): void
     {
-        $this->fields = [
-            'id' => ['type' => 'integer', 'autoIncrement' => true],
-            'number1' => ['type' => 'integer'],
-            'number2' => ['type' => 'integer'],
-            'created' => ['type' => 'datetime'],
-            'modified' => ['type' => 'datetime'],
-        ];
         $this->records = [
             [
                 'number1' => 2,
