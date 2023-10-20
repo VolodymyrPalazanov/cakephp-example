@@ -16,15 +16,15 @@ class Math extends AbstractMigration
     {
     }
     public function up()
-{
-    $table = $this->table('math');
-    $table
-    ->addColumn('id', 'integer', ['autoIncrement' => true, 'null' => false])
-    ->addColumn('number1', 'integer', ['length' => 255, 'null' => false])
-    ->addColumn('number2', 'integer', ['length' => 255, 'null' => false])
-    ->addColumn('created', 'datetime', ['default' => null, 'null' => false])
-     ->addColumn('modified', 'datetime', ['default' => null, 'null' => false])
-    ->addPrimaryKey(['id'])
-    ->create();
-}
+    {
+        $table = $this->table('math');
+        $table
+        ->addColumn('id', 'integer', ['autoIncrement' => true, 'null' => false])
+        ->addColumn('number1', 'integer', ['length' => 255, 'null' => false])
+        ->addColumn('number2', 'integer', ['length' => 255, 'null' => false])
+        ->addColumn('created', 'datetime', ['default' => null, 'null' => false])
+        ->addColumn('modified', 'datetime', ['default' => null, 'null' => false])
+        ->addPrimaryKey(['id'])
+        ->create();
+    }
 }
