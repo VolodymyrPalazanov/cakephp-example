@@ -14,7 +14,6 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
-use Cake\ORM\TableRegistry;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
@@ -30,7 +29,7 @@ use Cake\TestSuite\TestCase;
 final class MathControllerTest extends TestCase
 {
     use IntegrationTestTrait;
-
+    protected $Math;
     public function setUp(): void
     {
         parent::setUp();
@@ -54,14 +53,20 @@ final class MathControllerTest extends TestCase
     /**
      * Test adding numbers via the "add" action.
      */
-    // public function testAdd()
-    // {
-    //     $this->get('/math/add'); 
-    //     $this->assertResponseOk();
-    //     $this->assertResponseContains('The math has been saved');
-    // }
+    public function testAdd(): void
+    {
+        $this->enableCsrfToken();
+        $this->enableSecurityToken();
+        $data = [
+            'number1' => 5,
+            'number2' => 3,
+        ];
+        $this->get('/math/add?number1=' . $data['number1'] . '&number2=' . $data['number2']);
+        $this->assertResponseOk();
+        $this->assertResponseContains('The math has been saved');
+    }
 
-    // public function testEdit()
+    // public function testEdit(): void
     // {
     //     $entityId = 1; 
     //     $this->get('/math/edit/' . $entityId); 
@@ -69,7 +74,7 @@ final class MathControllerTest extends TestCase
     //     $this->assertResponseContains('The math has been saved');
     // }
 
-    // public function testDelete()
+    // public function testDelete(): void
     // {
     //     $entityId = 1; 
     //     $this->post('/math/delete/' . $entityId);
