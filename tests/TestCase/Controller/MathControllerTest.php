@@ -59,9 +59,6 @@ final class MathControllerTest extends TestCase
         $this->assertResponseOk();
     }
 
-    /**
-     * Test adding numbers via the "add" action.
-     */
     public function testAdd(): void
     {
         $this->enableCsrfToken();
