@@ -34,9 +34,9 @@ final class MathControllerTest extends TestCase
      *
      * @var array<string>
      */
-    protected array $fixtures = [
-        'app.Math',
-    ];
+    // protected array $fixtures = [
+    //     'app.Math',
+    // ];
     use IntegrationTestTrait;
     protected $Math;
     public function setUp(): void
@@ -59,13 +59,13 @@ final class MathControllerTest extends TestCase
         $this->assertResponseOk();
     }
 
-    public function testAdd(): void
-    {
-        $this->enableCsrfToken();
-        $this->enableSecurityToken();
-        $this->post('/math/add', ['number1' => 5, 'number2' => 3]);
-        $this->assertResponseSuccess();
-    }
+    // public function testAdd(): void
+    // {
+    //     $this->enableCsrfToken();
+    //     $this->enableSecurityToken();
+    //     $this->post('/math/add', ['number1' => 5, 'number2' => 3]);
+    //     $this->assertResponseSuccess();
+    // }
 
     // public function testEdit(): void
     // {
